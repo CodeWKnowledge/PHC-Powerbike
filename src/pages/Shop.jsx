@@ -2,22 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
 import { IMAGES } from '../data/assets';
-
-const products = [
-    { id: 1, name: 'S1-Dark Obsidian', category: 'Powerbikes', price: 12400, img: IMAGES.products.bike1 },
-    { id: 2, name: 'Core Carbon Helmet', category: 'Helmets', price: 850, img: IMAGES.products.helmet1 },
-    { id: 3, name: 'Urban Moto Boots', category: 'Boots', price: 420, img: IMAGES.products.boots1 },
-    { id: 4, name: 'S1-Cobalt Blue', category: 'Powerbikes', price: 12400, img: IMAGES.products.bike2 },
-    { id: 5, name: 'Aero Gloves', category: 'Gloves', price: 120, img: IMAGES.products.gloves1 },
-    { id: 6, name: 'Stealth Mask', category: 'Accessories', price: 95, img: IMAGES.products.mask1 },
-    { id: 7, name: 'Apex Powerbike', category: 'Powerbikes', price: 15600, img: IMAGES.products.bike3 },
-    { id: 8, name: 'Night Rider Helmet', category: 'Helmets', price: 920, img: IMAGES.products.helmet2 },
-    { id: 9, name: 'Urban Vest', category: 'Accessories', price: 280, img: IMAGES.products.vest1 },
-    { id: 10, name: 'Racer Boot Pro', category: 'Boots', price: 550, img: IMAGES.products.boots2 },
-    { id: 11, name: 'Thermal Glove', category: 'Gloves', price: 150, img: IMAGES.products.gloves2 },
-    { id: 12, name: 'Carbon Jacket', category: 'Accessories', price: 450, img: IMAGES.products.jacket1 },
-];
-
+import { PRODUCTS } from '../data/products';
 
 const categories = [
     { name: 'All', value: 'all' },
@@ -34,7 +19,6 @@ const Shop = () => {
     }, []);
 
     const [searchParams, setSearchParams] = useSearchParams();
-
     const categoryParam = searchParams.get('category') || 'all';
     const [activeCategory, setActiveCategory] = useState(categoryParam);
 
@@ -53,8 +37,9 @@ const Shop = () => {
     };
 
     const filteredProducts = activeCategory === 'all'
-        ? products
-        : products.filter(p => p.category === activeCategory);
+        ? PRODUCTS
+        : PRODUCTS.filter(p => p.category === activeCategory);
+
 
 
     return (

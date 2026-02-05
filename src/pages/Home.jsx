@@ -3,8 +3,11 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { IMAGES } from '../data/assets';
 import { useEffect } from 'react';
+import { PRODUCTS } from '../data/products';
 
 const Home = () => {
+    const featuredProducts = PRODUCTS.slice(0, 4);
+
 
     useEffect(() => {
         document.title = "Portharcourt Powerbike | High-Performance Urban Hardware";
@@ -109,13 +112,9 @@ const Home = () => {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20">
-                        {[
-                            { id: 1, name: 'S1-Dark Obsidian', price: '$12,400', img: IMAGES.products.bike1 },
-                            { id: 8, name: 'Night Rider Helmet', price: '$920', img: IMAGES.products.helmet2 },
-                            { id: 9, name: 'Urban Vest', price: '$280', img: IMAGES.products.vest1 },
-                            { id: 7, name: 'Apex Powerbike', price: '$15,600', img: IMAGES.products.bike3 },
-                        ].map((product, i) => (
+                        {featuredProducts.map((product, i) => (
                             <motion.div
+
                                 key={product.id}
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}

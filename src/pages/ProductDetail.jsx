@@ -5,69 +5,12 @@ import { motion } from 'framer-motion';
 import { ChevronRight, Minus, Plus, ShoppingCart, ShieldCheck, Zap, History, Check } from 'lucide-react';
 import { IMAGES } from '../data/assets';
 import { useCart } from '../context/CartContext';
-
-const products = {
-    1: {
-        id: 1,
-        name: 'S1-Dark Obsidian',
-        price: '$12,400',
-        category: 'Powerbike',
-        description: 'A balanced electric powerbike designed for daily streets and long rides. Quiet strength, smooth handling, and dependable range.',
-        specs: [
-            { label: 'Range', value: '180 km' },
-            { label: 'Top Speed', value: '120 km/h' },
-            { label: 'Charge Time', value: '2 hours' },
-            { label: 'Weight', value: '165 kg' }
-        ],
-        images: [IMAGES.products.bike1, IMAGES.products.bike2, IMAGES.products.bike3]
-    },
-    8: {
-        id: 8,
-        name: 'Night Rider Helmet',
-        price: '$920',
-        category: 'Safety Gear',
-        description: 'Ultralight carbon fiber construction with advanced ventilation. Designed for maximum protection without compromising on aesthetic precision.',
-        specs: [
-            { label: 'Material', value: '3K Carbon Fiber' },
-            { label: 'Weight', value: '1250g' },
-            { label: 'Safety', value: 'ECE 22.06' },
-            { label: 'Visor', value: 'Anti-scratch Dark Smoke' }
-        ],
-        images: [IMAGES.products.helmet2, IMAGES.products.helmet1]
-    },
-    9: {
-        id: 9,
-        name: 'Urban Vest',
-        price: '$280',
-        category: 'Accessories',
-        description: 'High-visibility urban armor. Lightweight, breathable, and designed for maximum mobility in city traffic.',
-        specs: [
-            { label: 'Material', value: 'Reinforced Tech-Fiber' },
-            { label: 'Weight', value: '850g' },
-            { label: 'Armor', value: 'Level 2 Specialized' },
-        ],
-        images: [IMAGES.products.vest1, IMAGES.products.vest2]
-    },
-    7: {
-        id: 7,
-        name: 'Apex Powerbike',
-        price: '$15,600',
-        category: 'Powerbike',
-        description: 'The pinnacle of urban engineering. Faster, stronger, and more refined than anything on the street today.',
-        specs: [
-            { label: 'Range', value: '250 km' },
-            { label: 'Top Speed', value: '160 km/h' },
-            { label: 'Charge Time', value: '45 mins (Fast)' },
-            { label: 'Weight', value: '180 kg' }
-        ],
-        images: [IMAGES.products.bike3, IMAGES.products.bike4, IMAGES.products.bike1]
-    }
-};
-
+import { PRODUCTS } from '../data/products';
 
 const ProductDetail = () => {
     const { id } = useParams();
-    const product = products[id] || products[1];
+    const product = PRODUCTS.find(p => p.id === parseInt(id)) || PRODUCTS[0];
+
 
     useEffect(() => {
         document.title = `${product.name} | Portharcourt Powerbike`;
@@ -225,7 +168,8 @@ const ProductDetail = () => {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {Object.values(products).filter(p => p.id !== product.id).slice(0, 4).map((item) => (
+                        {PRODUCTS.filter(p => p.id !== product.id).slice(0, 4).map((item) => (
+
                             <Link key={item.id} to={`/product/${item.id}`} className="group">
                                 <div className="aspect-[4/5] bg-brand-offwhite mb-6 overflow-hidden">
                                     <img src={item.images[0]} alt={item.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />

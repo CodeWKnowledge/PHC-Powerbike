@@ -28,7 +28,7 @@ import vest1 from '../assets/Images/Vest 1.jpg';
 import vest2 from '../assets/Images/Vest 2.jpg';
 
 export const IMAGES = {
-    hero: bike1,
+    hero: bike2,
     categories: {
         bikes: bike3,
         helmets: helmet1,
